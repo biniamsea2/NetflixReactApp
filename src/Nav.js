@@ -18,7 +18,8 @@ function Nav() {
   }, []);
 
   return (
-    <div className="nav nav_black">
+    //   only add the nav_black class if show is true (using for the scroll feature written above)
+    <div className={`nav ${show && "nav_black"}`}>
       <div className="nav_container">
         <img
           className="nav_logo"
