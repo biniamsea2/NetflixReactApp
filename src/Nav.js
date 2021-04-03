@@ -4,6 +4,7 @@ import "./Nav.css";
 function Nav() {
   // change header once the user gets to a certain point of the page
   const [show, handleShow] = useState(false);
+  
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
       handleShow(true);
