@@ -38,7 +38,7 @@ function Banner() {
       }}
     >
       <div className="banner_contents">
-        {/* could be labled as title or name */}
+        {/* could be labled as title, name, or original_name*/}
         <h1 className="banner_title">
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
