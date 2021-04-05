@@ -17,7 +17,9 @@
 }
 
 .row_poster{
-    max-height:100px;
+    /* max-height:100px; */
+    max-height:330px;
+
     /* keeps aspect ratio the same */
     object-fit: contain;
     margin-right:10px;
@@ -30,12 +32,6 @@
     opacity: 1;
 }
 
-.row_poserLarge{
-    max-height:250px;
+.row > h2{
+    margin-left:15px;
 }
-
-.row_poserLarge:hover{
-    transform: scale(1.09);
-    opacity: 1;
-}
- 
