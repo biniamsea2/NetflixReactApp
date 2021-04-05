@@ -28,7 +28,7 @@ function Row({ title, getUrl }) {
             // if isLargeRow is false but we do have a movie.backdrop_path then display the image otherwise dont
             (movie.poster_path || movie.backdrop_path) && (
               <img
-                className={`row_poster "}`}
+                className="row_poster"
                 key={movie.id}
                 src={`${base_url}${
                   //if movie is large display poster otherwise display backdrop
