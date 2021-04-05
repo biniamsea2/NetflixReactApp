@@ -14,6 +14,7 @@ function HomeScreen() {
       <Row
         title="NETFLIX ORIGINALS"
         getUrl={requests.getNetflixOriginals}
+        isLargeRow
       />
       <Row title="Trending Now" getUrl={requests.getTrending} />
       <Row title="Action Movies" getUrl={requests.getActionMovies} />
@@ -21,6 +22,8 @@ function HomeScreen() {
       <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />
       <Row title="Romance Movies" getUrl={requests.getRomanceMovies} />
       <Row title="Documentaries" getUrl={requests.getDocumentaries} />
+      <Row title="Crime Movies" getUrl={requests.getCrimeMovies} />
+      <Row title="Reality TV" getUrl={requests.getRealStories} />
 
       {/* Row */}
     </div>
