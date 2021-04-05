@@ -35,7 +35,7 @@ function Row({ title, getUrl, isLargeRow = false }) {
                   //if movie is large display poster otherwise display backdrop
                   isLargeRow ? movie.poster_path : movie.backdrop_path
                 }`}
-                alt={movie.name}
+                alt={movie?.name || movie?.name || movie?.original_name}
               />
             )
         )}
