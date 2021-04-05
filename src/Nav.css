@@ -25,9 +25,9 @@
     position: fixed;
     left:0;
     width:100px;
-    cursor: pointer;
-    padding-left: 20px;
     object-fit: contain;
+    padding-left: 20px;
+    cursor: pointer;
     top:10px;
 }
 
