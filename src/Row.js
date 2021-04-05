@@ -21,15 +21,25 @@ function Row({ title, getUrl, isLargeRow = false }) {
   return (
     <div className="row">
       <h2>{title}</h2>
-      {movies.map((movie) => (
-        <img
-          src={`${base_url}${
-              //if movie is large display poster otherwise display backdrop
-            isLargeRow ? movie.poster_path : movie.backdrop_path
-          }`}
-          alt={movie.name}
-        />
-      ))}
+      <div className="row_posters">
+        {movies.map(
+          (movie) =>
+            //   checking for deadlinks, if isLargeRow is true and we have a movie.poster_path or
+            // if isLargeRow is false but we do have a movie.backdrop_path then display the image otherwise dont
+            ((isLargeRow && movie.poster_path) ||
+              (!isLargeRow && movie.backdrop_path)) && (
+              <img
+                className={`row_poster ${isLargeRow && "row_poserLarge"}`}
+                key={movie.id}
+                src={`${base_url}${
+                  //if movie is large display poster otherwise display backdrop
+                  isLargeRow ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.name}
+              />
+            )
+        )}
+      </div>
     </div>
   );
 }
