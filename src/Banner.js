@@ -20,8 +20,6 @@ function Banner() {
     fetchData();
   }, []);
 
-  console.log(movie);
-
   function truncate(string, characterLength) {
     return string?.length > characterLength
       ? string.substr(0, characterLength - 1) + "..."
