@@ -4,18 +4,26 @@ import LoginScreen from "./screens/LoginScreen";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { auth } from "./firebase";
+import { useDispatch } from "react-redux";
+import { logout } from "./features/UserSlice";
+import { login } from "./features/UserSlice";
 
 function App() {
   const user = null;
+  const dispatch = useDispatch();
 
   // listener that listens to any auth state change (user logged in or not)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        // logged in
-        console.log(userAuth);
+        // logged in, push the user into 
+        dispatch(login({
+          uid: userAuth.uid,
+          email: userAuth.email,
+        }))
       } else {
         // logged out
+        dispatch(logout);
       }
     });
     // detach the old listener and attach a new one

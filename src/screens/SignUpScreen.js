@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { auth } from "../firebase";
 import "./SignUpScreen.css";
 
-function SignInScreen() {
+function SignUpScreen() {
   // reference to the html fields in our sign in
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -58,4 +58,4 @@ function SignInScreen() {
   );
 }
 
-export default SignInScreen;
+export default SignUpScreen;
