@@ -18,16 +18,17 @@ function ProfileScreen() {
             src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png"
             alt="avatar logo"
           />
-        </div>
-        <div className="profileScreen_details">
-          <h2>{user.email}</h2>
-          <div className="profileScreen_plans">
-            <button
-              onClick={() => auth.signOut()}
-              className="profileScreen_signOut"
-            >
-              Sign Out
-            </button>
+          <div className="profileScreen_details">
+            <h2> {user.email} </h2>
+            <div className="profileScreen_plans">
+                <h3>Plans</h3>
+              <button
+                onClick={() => auth.signOut()}
+                className="profileScreen_signOut"
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
         </div>
       </div>
