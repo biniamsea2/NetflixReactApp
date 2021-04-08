@@ -25,12 +25,13 @@ function App() {
         );
       } else {
         // logged out
-        dispatch(logout);
+        dispatch(logout());
       }
     });
     // detach the old listener and attach a new one
     return unsubscribe;
-  }, []);
+    // useEffect is dependent on the dispatch method, everytime we have a dispatch event fired we need to run the above code 
+  }, [dispatch]);
 
   return (
     <div className="app">
