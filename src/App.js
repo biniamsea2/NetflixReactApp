@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { auth } from "./firebase";
@@ -38,8 +39,8 @@ function App() {
           <LoginScreen />
         ) : (
           <Switch>
-            <Route path="/">
-              <HomeScreen />
+            <Route path="/profile">
+              <ProfileScreen />
             </Route>
             {/* only render homescreen if its the exact path */}
             <Route exact path="/">

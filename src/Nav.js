@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./Nav.css";
 
 function Nav() {
   // change header once the user gets to a certain point of the page
   const [show, handleShow] = useState(false);
+  const history = useHistory();
   
   const transitionNavBar = () => {
     if (window.scrollY > 100) {
@@ -28,6 +30,8 @@ function Nav() {
           alt="netflix logo"
         />
         <img
+        // when we click on the avatar we want to go to the /login route
+        onClick={()=> history.push("/login")}
           className="nav_avatar"
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
           alt="netflix avatar logo"
