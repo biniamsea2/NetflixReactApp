@@ -30,8 +30,8 @@ function Nav() {
           alt="netflix logo"
         />
         <img
-        // when we click on the avatar we want to go to the /login route
-        onClick={()=> history.push("/login")}
+        // when we click on the avatar we want to go to the "/profile" route by pushing it to the history we know where to go back to when we click the back button
+        onClick={()=> history.push("/profile")}
           className="nav_avatar"
           src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
           alt="netflix avatar logo"
