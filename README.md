@@ -1,5 +1,6 @@
 Deployed Link [Here](https://netflixreactapp-e9ea8.web.app/)
 
+
 ## Available Scripts
 
 In the project directory, you can run:
