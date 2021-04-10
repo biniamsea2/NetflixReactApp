@@ -4,7 +4,6 @@ Deployed Link [Here](https://netflixreactapp-e9ea8.web.app/)
 
 In the project directory, you can run:
 
-
 ### `npm start`
 
 Runs the app in the development mode.<br />
