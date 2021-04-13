@@ -21,7 +21,7 @@ function PlanScreen() {
       .collection("subscriptions")
       .get()
       //enumerate through out querySnapshot
-      .the((querySnapshot) => {
+      .then((querySnapshot) => {
         querySnapshot.forEach(async (subscription) => {
           setSubsription({
             role: subscription.data().role,
@@ -56,7 +56,6 @@ function PlanScreen() {
       });
   }, []);
 
-  console.log(products);
   console.log(subscription);
   //  send the user to the stripe checkout payment screen
   const loadCheckout = async (priceId) => {
