@@ -89,7 +89,7 @@ function PlanScreen() {
   return (
     <div className="planScreen">
       {Object.entries(products).map(([productId, productData]) => {
-        //   check if users subscription is active
+        //   check if users subscription is active, make sure metadata in stripe is lowercase
         const isCurrentPackage = productData.name
           ?.toLowerCase()
           .includes(subscription?.role);
@@ -100,13 +100,14 @@ function PlanScreen() {
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            
+            {/* if the role doesnt match and the user clicks on it send them to the payment processing screen, (sending the priceID as a parameter) otherwise do nothing */}
             <button
               onClick={() =>
                 !isCurrentPackage && loadCheckout(productData.prices.priceId)
               }
             >
-              {isCurrentPackage ? "Current Package" : "Subscribe"}
+              {/* if current plan is true display current plan otherwise display subscribe */}
+              {isCurrentPackage ? "Current Plan" : "Subscribe"}
             </button>
           </div>
         );
