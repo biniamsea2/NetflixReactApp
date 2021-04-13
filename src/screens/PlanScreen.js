@@ -90,14 +90,23 @@ function PlanScreen() {
     <div className="planScreen">
       {Object.entries(products).map(([productId, productData]) => {
         //   check if users subscription is active
+        const isCurrentPackage = productData.name
+          ?.toLowerCase()
+          .includes(subscription?.role);
+
         return (
           <div className="planScreen_plan">
             <div className="planScreen_info">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button onClick={() => loadCheckout(productData.prices.priceId)}>
-              Subscribe
+            
+            <button
+              onClick={() =>
+                !isCurrentPackage && loadCheckout(productData.prices.priceId)
+              }
+            >
+              {isCurrentPackage ? "Current Package" : "Subscribe"}
             </button>
           </div>
         );
