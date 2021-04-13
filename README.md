@@ -41,6 +41,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Tools Used:
 - Visual Studio Code
 - React.js
+- Stripe for payment processing
 - TMDB
 - Firebase for hosting, database, and authentication 
 - Redux
