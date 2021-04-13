@@ -88,6 +88,11 @@ function PlanScreen() {
   };
   return (
     <div className="planScreen">
+      {/* if subscription is true display the current_period_end */}
+      {subscription && (
+        // we * 1000 Because Javascript uses milliseconds internally 
+        <p>Renewal Date: {new Date(subscription?.current_period_end * 1000).toLocaleDateString()} </p>
+      )}
       {Object.entries(products).map(([productId, productData]) => {
         //   check if users subscription is active, make sure metadata in stripe is lowercase
         const isCurrentPackage = productData.name
@@ -95,7 +100,13 @@ function PlanScreen() {
           .includes(subscription?.role);
 
         return (
-          <div className="planScreen_plan">
+          <div
+            // using the productId as a key because its unique
+            key={productId}
+            className={`${
+              isCurrentPackage && "planScreen_plan--disabled"
+            } planScreen_plan`}
+          >
             <div className="planScreen_info">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
