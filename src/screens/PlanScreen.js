@@ -9,6 +9,29 @@ function PlanScreen() {
   // pulling products from our database
   const [products, setProducts] = useState([]);
   const user = useSelector(selectUser);
+  // get the current user's subscription plan
+  const [subscription, setSubsription] = useState(null);
+
+  useEffect(() => {
+    // go to customers
+    db.collection("customers")
+      // go to this user
+      .doc(user.uid)
+      // go to subscription
+      .collection("subscriptions")
+      .get()
+      //enumerate through out querySnapshot
+      .the((querySnapshot) => {
+        querySnapshot.forEach(async (subscription) => {
+          setSubsription({
+            role: subscription.data().role,
+            current_period_end: subscription.data().current_period_end.seconds,
+            current_period_start: subscription.data().current_period_start
+              .seconds,
+          });
+        });
+      });
+  }, [user.uid]);
 
   // fetch the products from the database
   useEffect(() => {
@@ -33,6 +56,8 @@ function PlanScreen() {
       });
   }, []);
 
+  console.log(products);
+  console.log(subscription);
   //  send the user to the stripe checkout payment screen
   const loadCheckout = async (priceId) => {
     const docRef = await db
