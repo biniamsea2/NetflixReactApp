@@ -29,8 +29,23 @@ function PlanScreen() {
       });
   }, []);
 
-  console.log(products)
-  return <div className="planScreen"></div>;
+  console.log(products);
+  return (
+    <div className="planScreen">
+      {Object.entries(products).map(([productId, productData]) => {
+        //   check if users subscription is active
+        return (
+          <div className="planScreen_plan">
+            <div className="planScreen_info">
+              <h5>{productData.name}</h5>
+              <h6>{productData.description}</h6>
+            </div>
+            <button>Subscribe</button>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default PlanScreen;
