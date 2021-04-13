@@ -22,7 +22,7 @@ function ProfileScreen() {
           <div className="profileScreen_details">
             <h2> {user.email} </h2>
             <div className="profileScreen_plans">
-              <h3>Plans</h3>
+              <h3>Subscription Plans:</h3>
               <PlanScreen/>
               <p></p>
               <button

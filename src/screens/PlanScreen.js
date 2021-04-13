@@ -29,7 +29,9 @@ function PlanScreen() {
       });
   }, []);
 
-  console.log(products);
+  const loadCheckout = async (priceId) => {
+      
+  };
   return (
     <div className="planScreen">
       {Object.entries(products).map(([productId, productData]) => {
@@ -40,7 +42,9 @@ function PlanScreen() {
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button>Subscribe</button>
+            <button onClick={() => loadCheckout(productData.prices.price.id)}>
+              Subscribe
+            </button>
           </div>
         );
       })}
