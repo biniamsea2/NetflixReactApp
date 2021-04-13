@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import db from "../firebase";
 import "./PlanScreen.css";
+import { selectUser } from "../features/UserSlice";
+import { useSelector } from "react-redux";
+import { loadStripe } from "@stripe/stripe-js";
 
 function PlanScreen() {
   // pulling products from our database
   const [products, setProducts] = useState([]);
+  const user = useSelector(selectUser);
 
   // fetch the products from the database
   useEffect(() => {
@@ -29,8 +33,34 @@ function PlanScreen() {
       });
   }, []);
 
+  //  send the user to the stripe checkout payment screen
   const loadCheckout = async (priceId) => {
-      
+    const docRef = await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("checkout_sessions")
+      .add({
+        price: priceId,
+        // whether the user successfully completed a payment or not send them back to whatever url they were previously on (editprofile location)
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
+    docRef.onSnapshot(async (snap) => {
+      const { error, sessionId } = snap.data();
+      if (error) {
+        alert(`An error occured: ${error.message}`);
+      }
+
+      if (sessionId) {
+        // we have a session, redirect to checkout
+        // initialize stripe, with test key
+        const stripe = await loadStripe(
+          "pk_test_51IfcqpKwZUroqbpG8fBJR5iyplRiY16G0emUlY73jAhAHUkQsdfPvf9vMmtcijqWN3BKa4GizjmlmJroJVlM3Ms400gClkmUPf"
+        );
+        // redirect with the sessionId
+        stripe.redirectToCheckout({ sessionId });
+      }
+    });
   };
   return (
     <div className="planScreen">
@@ -42,7 +72,7 @@ function PlanScreen() {
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
-            <button onClick={() => loadCheckout(productData.prices.price.id)}>
+            <button onClick={() => loadCheckout(productData.prices.priceId)}>
               Subscribe
             </button>
           </div>
