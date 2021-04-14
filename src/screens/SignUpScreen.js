@@ -17,7 +17,7 @@ function SignUpScreen() {
         passwordRef.current.value
       )
       .then((authUser) => {
-        console.log(authUser);
+        // console.log(authUser);
       })
       .catch((error) => {
         alert(error.message);
@@ -33,7 +33,7 @@ function SignUpScreen() {
         passwordRef.current.value
       )
       .then((authUser) => {
-        console.log(authUser);
+        // console.log(authUser);
       })
       .catch((error) => alert(error.message));
   };

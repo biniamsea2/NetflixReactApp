@@ -56,7 +56,7 @@ function PlanScreen() {
       });
   }, []);
 
-  console.log(subscription);
+  // console.log(subscription);
   //  send the user to the stripe checkout payment screen
   const loadCheckout = async (priceId) => {
     const docRef = await db

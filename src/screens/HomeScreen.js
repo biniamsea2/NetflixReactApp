@@ -34,7 +34,7 @@ function HomeScreen() {
       <Row title="TV Talk" getUrl={requests.getTalkTv} />
       <Row title="TV Drama" getUrl={requests.getDramaTv} />
 
-      {/* Row */}
+
     </div>
   );
 }
