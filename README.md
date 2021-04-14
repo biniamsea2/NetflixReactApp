@@ -1,17 +1,22 @@
 Deployed Link [Here](https://netflixreactapp-e9ea8.web.app/)
 
-## Tools Used:
-- Visual Studio Code
-- React.js
-- Stripe for payment processing
-- TMDB
-- Firebase for hosting, database, and authentication 
-- Redux
-- Axios
-- Material UI 
-- Flexbox
-- Github
-- Ubuntu
+### Project Summary
+This Netflix application was created using Visual Studio Code and React.js. The goal for this application was to try and replicate the Netflix applicatoin as much as possible, while becoming more familiar with React.js. In order to successfully build this application I followed numerous tutorials which helped me build a stronger React.js foundation. 
+
+Thanks to this application I was able to expand on a ton of React.js concepts and also become more familiar with some of Javascript's libraries. One thing I would like to mention regarding this application is the subscription plan. User's are currently able to create an account without having to purchase a subsription plan. I left this feature how it is because if changed, the user would be forced to subscribe to a subscription before viewing the home page. I decided to not force the user to subscribe to use the application. However, if a user does decide to subscribe to a plan, they can click the avatar logo on the top right, and subscribe to a plan. Once they click on their plan they will automatically be sent to the Stripe payment processing. There they can use Stripe's test card for their payment. All you would need to do is put 4242 in all input fields that require numbers. Here's the documentation for additional help [Stripe Testing Card Number](https://stripe.com/docs/testing)
+
+### Learning Objectives:
+- Setting up a React App infrastructure.
+- Create a Firebase project for hosting, database, and authentication.
+- Incorporate Redux.
+- Create TMDB account for movie info.
+- Become familiar with TMDB's API.
+- Add the Axios library to help us make http requests to external api.
+- Include React Router Dom.
+- Implement meaningful documentation to better assist on updates.
+- Follow industry standards for styling.
+- Create Stripe account to be able to include payment processing.
+- Add Stripe extension through Firebase to connect Stripe account to Firebase account.
 
 ## Available Scripts
 
