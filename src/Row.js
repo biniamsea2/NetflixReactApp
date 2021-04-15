@@ -13,8 +13,7 @@ function Row({ title, getUrl }) {
  
   const base_url = "https://image.tmdb.org/t/p/original/";
   const urltest = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`
-  const final = "https://www.youtube.com/watch?v=GkXeVIfbJOw"
-  const testing = {getTrailer}
+  const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`
 
 
 
@@ -33,6 +32,8 @@ function Row({ title, getUrl }) {
     async function fetchData2() {
       const request2 = await axios.get(urltest);
       setTrailertest(request2.data.results[0]);
+      console.log(getTrailer.key)
+
       return request2;
     }
 
@@ -78,16 +79,17 @@ function Row({ title, getUrl }) {
         <h1>{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1>{getMovie?.overview}</h1>
         <h1>{getMovie?.id}</h1>
-        <h1>{getTrailer?.results.key}</h1>
+
+        {/* <h1>{getTrailer?.results.key}</h1> */}
 
 
         <div>
 
 
-              {/* <ReactPlayer
-                url= {final} + {results.key}
+              <ReactPlayer
+                url= {final}
                 
-              /> */}
+              />
 
         </div>
 
