@@ -16,7 +16,6 @@ function HomeScreen() {
       <Row
         title="NETFLIX ORIGINALS"
         getUrl={requests.getNetflixOriginals}
-        isLargeRow
       />
 
       <Row title="Trending Now" getUrl={requests.getTrending}/>
