@@ -8,12 +8,13 @@ import ReactPlayer from "react-player"
 function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
+  const [getTrailer, setTrailertest] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
  
   const base_url = "https://image.tmdb.org/t/p/original/";
   const urltest = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`
-  const final = "https://www.youtube.com/watch?v=XtMThy8QKqU&t=238s"
-
+  const final = "https://www.youtube.com/watch?v=GkXeVIfbJOw"
+  const testing = {getTrailer}
 
 
 
@@ -28,7 +29,16 @@ function Row({ title, getUrl }) {
     // dependency: [getUrl]
   }, [getUrl]);
 
+  useEffect(() => {
+    async function fetchData2() {
+      const request2 = await axios.get(urltest);
+      setTrailertest(request2.data.results[0]);
+      return request2;
+    }
 
+    fetchData2();
+    // dependency: [getUrl]
+  }, []);
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -67,16 +77,17 @@ function Row({ title, getUrl }) {
         <h1>{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
         <h1>{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1>{getMovie?.overview}</h1>
+        <h1>{getMovie?.id}</h1>
+        <h1>{getTrailer?.results.key}</h1>
 
 
         <div>
 
 
-
-              <ReactPlayer
-                url= {final}
+              {/* <ReactPlayer
+                url= {final} + {results.key}
                 
-              />
+              /> */}
 
         </div>
 
