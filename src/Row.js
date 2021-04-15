@@ -4,19 +4,12 @@ import axios from "./axios";
 import YouTube from "react-youtube";
 import Modal from "react-modal";
 
-
 function Row({ title, getUrl, h1 }) {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
   const [getMovieName, setGetMovieName] = useState("");
-
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
  
-
-  
-
-
   const base_url = "https://image.tmdb.org/t/p/original/";
 
   useEffect(() => {
@@ -63,24 +56,39 @@ function Row({ title, getUrl, h1 }) {
               <img
                 className="row_poster"
                 key={movie.id}
-                onClick={() => { setModalIsOpen(true); setGetMovieName(movie?.name || movie?.original_title || movie?.original_name);}}
+                onClick={() => { setModalIsOpen(true); setGetMovieName(movie);}}
                 src={`${base_url}${movie.poster_path}`}
                 alt={movie?.name || movie?.name || movie?.original_name}
               />
             )
         )}
-      <Modal isOpen={modalIsOpen}>
-      <h1>{getMovieName}</h1>
-      <div>
-        <button onClick={()=> setModalIsOpen(false)}>Close Modal</button>
-      </div>
+        {/* onRequestClose the setModalIsOpen will be set to false, closing the modal, we can also close it by clicking the escape key, if we dont want onRequestClose but want to include the escape key feature we need to add shouldCloseOnOverlayClick={false} */}
+      <Modal 
+      isOpen={modalIsOpen}
+      onRequestClose={() => setModalIsOpen(false)}
+      style={
+        {
+          overlay:{
+            // give it that opacity look
+            backgroundColor:'rgba(255,255,255,0.5)'
+
+          },
+          content:{
+            backgroundColor:'black',
+            color:'white'
+          }
+        }
+      }>
+        <h1>{getMovieName?.name || getMovieName?.title || getMovieName?.original_name}</h1>
+        <h1>{getMovieName?.release_date}</h1>
+        <h1>{getMovieName?.overview}</h1>
+          <div>
+            <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
+          </div>
       </Modal>
       </div>
       {/* when we have a trailerUrl then show the youtube video */}
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts}/>}
-
-
-
     </div>
   );
 }

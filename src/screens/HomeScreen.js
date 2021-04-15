@@ -24,6 +24,7 @@ function HomeScreen() {
       <Row title="Comedy Movies" getUrl={requests.getComedyMovies} />
       <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />
       <Row title="Romance Movies" getUrl={requests.getRomanceMovies} />
+      <Row title="TV Family" getUrl={requests.getTvFamily} />
       <Row title="Documentaries" getUrl={requests.getDocumentaries} />
       <Row title="Crime Movies" getUrl={requests.getCrimeMovies} />
       <Row title="Reality TV" getUrl={requests.getRealStories} />

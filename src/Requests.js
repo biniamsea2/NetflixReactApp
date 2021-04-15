@@ -8,6 +8,7 @@ const requests = {
   getHorrorMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=27`,
   getTopRated: `/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
   getRomanceMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10749`,
+  getTvFamily: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10751`,
   getSciFi: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10765`,
   getWar: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10768`,
   getFamilyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10751`,
