@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomeScreen.css";
 import Nav from "../Nav";
 import Banner from "../Banner";
@@ -6,6 +6,8 @@ import Row from "../Row";
 import requests from "../Requests";
 
 function HomeScreen() {
+
+
   return (
     <div className="homeScreen">
       <Nav />
@@ -16,7 +18,8 @@ function HomeScreen() {
         getUrl={requests.getNetflixOriginals}
         isLargeRow
       />
-      <Row title="Trending Now" getUrl={requests.getTrending} />
+
+      <Row title="Trending Now" getUrl={requests.getTrending}/>
       <Row title="Action Movies" getUrl={requests.getActionMovies} />
       <Row title="Comedy Movies" getUrl={requests.getComedyMovies} />
       <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />
@@ -33,8 +36,6 @@ function HomeScreen() {
       <Row title="Drama Movies" getUrl={requests.getDramaMovies} />
       <Row title="TV Talk" getUrl={requests.getTalkTv} />
       <Row title="TV Drama" getUrl={requests.getDramaTv} />
-
-
     </div>
   );
 }
