@@ -3,7 +3,7 @@ import "./Row.css";
 import axios from "./axios";
 import Modal from "react-modal";
 import dateFormat from 'dateformat';
-import ReactPlayer from "react-player"
+import ReactPlayer from "react-player";
 
 function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
@@ -12,8 +12,8 @@ function Row({ title, getUrl }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
  
   const base_url = "https://image.tmdb.org/t/p/original/";
-  const urltest = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`
-  const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`
+  const urltest = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
 
 
@@ -29,15 +29,14 @@ function Row({ title, getUrl }) {
   }, [getUrl]);
 
   useEffect(() => {
-    async function fetchData2() {
-      const request2 = await axios.get(urltest);
-      setTrailertest(request2?.data.results[0]);
-      console.log(getTrailer?.key)
+    async function fetchMovieData() {
+      const movieRequest = await axios.get(urltest);
+      setTrailertest(movieRequest?.data.results[0]);
 
-      return request2;
+      return movieRequest;
     }
 
-    fetchData2();
+    fetchMovieData();
     // dependency: [getUrl]
   },);
   return (
@@ -59,48 +58,43 @@ function Row({ title, getUrl }) {
             )
         )}
         {/* onRequestClose the setModalIsOpen will be set to false, closing the modal, we can also close it by clicking the escape key, if we dont want onRequestClose but want to include the escape key feature we need to add shouldCloseOnOverlayClick={false} */}
+
       <Modal 
-      isOpen={modalIsOpen}
-      onRequestClose={() => setModalIsOpen(false)}
-      style={
-        {
-          overlay:{
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        style={
+          {
+            overlay:{
             // give it that opacity look
             backgroundColor:'rgba(255,255,255,0.5)'
 
           },
-          content:{
+        content:{
             backgroundColor:'black',
             color:'white'
           }
-        }
-      }>
+          }
+        }>
+              <ReactPlayer
+                url= {final}
+                width="100%"
+                height="100%"
+                controls={true}
+                />
+  
+
+
         <h1>{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
         <h1>{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1>{getMovie?.overview}</h1>
         <h1>{getMovie?.id}</h1>
         <h1>{final}</h1>
 
-        {/* <h1>{getTrailer?.results.key}</h1> */}
-
-
-        <div>
-
-
-              <ReactPlayer
-                url= {final}
-                
-              />
-
-        </div>
-
           <div>
             <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
           </div>
       </Modal>
-
-      </div>
-
+    </div>
     </div>
   );
 }
