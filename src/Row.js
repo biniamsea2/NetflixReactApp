@@ -10,6 +10,7 @@ function Row({ title, getUrl }) {
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
   const [getRuntime, setRuntime] = useState("");
+  const [getCast, setCast] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
  
   const base_url = "https://image.tmdb.org/t/p/original/";
@@ -17,7 +18,7 @@ function Row({ title, getUrl }) {
   const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
   const movieInfo = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}`;
-console.log(movieInfo)
+  const movieCast = `https://api.themoviedb.org/3/movie/${getMovie?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
 
   useEffect(() => {
     async function fetchData() {
@@ -53,9 +54,19 @@ console.log(movieInfo)
     fetchMovieRuntime();
   },);
 
+  useEffect(() => {
+    async function fetchMovieCast() {
+      const movieCharcters = await axios.get(movieCast);
+      setCast(movieCharcters?.data.name);
+
+      return movieCharcters;
+    }
+
+    fetchMovieCast();
+  },);
 
 
-
+console.log(getCast)
 
 
 
@@ -103,10 +114,10 @@ console.log(movieInfo)
                 />
   
         <h1 className="modal_title">{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
-        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "mmmm dS, yyyy")}</h1>
+        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1 className="modal_year_description">{getMovie?.overview}</h1>
         <h1>{getRuntime}</h1>
-        {/* <h1>{final}</h1> */}
+        <h1>{getCast}</h1>
 
           <div>
             <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
