@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Row.css";
 import axios from "./axios";
 import Modal from "react-modal";
-import dateFormat from 'dateformat';
+import dateFormat from "dateformat";
 import ReactPlayer from "react-player";
 
 function Row({ title, getUrl }) {
@@ -10,15 +10,13 @@ function Row({ title, getUrl }) {
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
   const [getRuntime, setRuntime] = useState("");
-  const [getCast, setCast] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
- 
+
   const base_url = "https://image.tmdb.org/t/p/original/";
   const urltest = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
   const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
   const movieInfo = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}`;
-  const movieCast = `https://api.themoviedb.org/3/movie/${getMovie?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
 
   useEffect(() => {
     async function fetchData() {
@@ -39,7 +37,7 @@ function Row({ title, getUrl }) {
     }
 
     fetchMovieData();
-  },);
+  });
 
   useEffect(() => {
     async function fetchMovieRuntime() {
@@ -47,21 +45,11 @@ function Row({ title, getUrl }) {
       setRuntime(movieRunTime?.data.runtime);
       return movieRunTime;
     }
-    
+
     fetchMovieRuntime();
-  },);
-  
-  useEffect(() => {
-    async function fetchMovieCast() {
-      const movieCharcters = await axios.get(movieCast);
-      setCast(movieCharcters?.data.name || movieCharcters?.data.original_name);
-      
-      return movieCharcters;
-    }
-    
-    fetchMovieCast();
-  },);
-  
+  });
+
+
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -74,7 +62,10 @@ function Row({ title, getUrl }) {
               <img
                 className="row_poster"
                 key={movie.id}
-                onClick={() => { setModalIsOpen(true); setGetMovie(movie);}}
+                onClick={() => {
+                  setModalIsOpen(true);
+                  setGetMovie(movie);
+                }}
                 src={`${base_url}${movie.poster_path}`}
                 alt={movie?.name || movie?.title || movie?.original_name}
               />
@@ -82,40 +73,43 @@ function Row({ title, getUrl }) {
         )}
         {/* onRequestClose the setModalIsOpen will be set to false, closing the modal, we can also close it by clicking the escape key, if we dont want onRequestClose but want to include the escape key feature we need to add shouldCloseOnOverlayClick={false} */}
 
-      <Modal 
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={
-          {
-            overlay:{
-            // give it that opacity look
-            backgroundColor:'rgba(255,255,255,0.5)'
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          style={{
+            overlay: {
+              // give it that opacity look
+              backgroundColor: "rgba(255,255,255,0.5)",
+              marginTop: "40px",
+            },
+            content: {
+              backgroundColor: "black",
+              color: "white",
+            },
+          }}
+        >
+          <ReactPlayer url={final} width="100%" height="75%" controls={true} />
 
-          },
-        content:{
-            backgroundColor:'black',
-            color:'white'
-          }
-          }
-        }>
-              <ReactPlayer
-                url= {final}
-                width="100%"
-                height="75%"
-                controls={true}
-                />
-  
-        <h1 className="modal_title">{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
-        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "yyyy")}</h1>
-        <h1 className="modal_year_description">{getMovie?.overview}</h1>
-        <h1>{getRuntime}</h1>
-        <h1>{getCast}</h1>
+          <h1 className="modal_title">
+            {getMovie?.name || getMovie?.title || getMovie?.original_name}
+          </h1>
+          <h1 className="modal_year_description">
+            {dateFormat(getMovie?.release_date, "yyyy")}
+          </h1>
+          <h1 className="modal_year_description">{getMovie?.overview}</h1>
+          <h1>{getRuntime}</h1>
+          {/* <h1>{movieCast}</h1> */}
 
           <div>
-            <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
+            <button
+              className="modal_button"
+              onClick={() => setModalIsOpen(false)}
+            >
+              Close
+            </button>
           </div>
-      </Modal>
-    </div>
+        </Modal>
+      </div>
     </div>
   );
 }
