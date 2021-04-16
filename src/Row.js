@@ -31,15 +31,15 @@ function Row({ title, getUrl }) {
   useEffect(() => {
     async function fetchData2() {
       const request2 = await axios.get(urltest);
-      setTrailertest(request2.data.results[0]);
-      console.log(getTrailer.key)
+      setTrailertest(request2?.data.results[0]);
+      console.log(getTrailer?.key)
 
       return request2;
     }
 
     fetchData2();
     // dependency: [getUrl]
-  }, []);
+  },);
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -79,6 +79,7 @@ function Row({ title, getUrl }) {
         <h1>{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1>{getMovie?.overview}</h1>
         <h1>{getMovie?.id}</h1>
+        <h1>{final}</h1>
 
         {/* <h1>{getTrailer?.results.key}</h1> */}
 
