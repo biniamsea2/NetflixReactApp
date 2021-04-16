@@ -40,11 +40,14 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #e50914;
-    border: none;
+    background-color: rgb(59, 59, 59);
+    border: 1px solid white;
     font-weight: 600;
     cursor: pointer;
     margin-top:20px;
+}
+.modal_button:hover{
+    background-color: #e50914;
 }
 
 .modal_title{
