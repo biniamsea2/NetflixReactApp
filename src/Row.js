@@ -56,7 +56,6 @@ function Row({ title, getUrl }) {
       const movieCharcters = await axios.get(movieCast);
       setCast(movieCharcters?.data.name || movieCharcters?.data.original_name);
       
-      console.log(getCast)
       return movieCharcters;
     }
     
