@@ -24,7 +24,6 @@ function Row({ title, getUrl }) {
     async function fetchData() {
       const request = await axios.get(getUrl);
       setMovies(request.data.results);
-      console.log(getMovie.runtime)
       return request;
     }
 
@@ -36,7 +35,6 @@ function Row({ title, getUrl }) {
     async function fetchMovieData() {
       const movieRequest = await axios.get(urltest);
       setTrailertest(movieRequest?.data.results[0]);
-
       return movieRequest;
     }
 
@@ -47,29 +45,24 @@ function Row({ title, getUrl }) {
     async function fetchMovieRuntime() {
       const movieRunTime = await axios.get(movieInfo);
       setRuntime(movieRunTime?.data.runtime);
-
       return movieRunTime;
     }
-
+    
     fetchMovieRuntime();
   },);
-
+  
   useEffect(() => {
     async function fetchMovieCast() {
       const movieCharcters = await axios.get(movieCast);
-      setCast(movieCharcters?.data.name);
-
+      setCast(movieCharcters?.data.name || movieCharcters?.data.original_name);
+      
+      console.log(getCast)
       return movieCharcters;
     }
-
+    
     fetchMovieCast();
   },);
-
-
-console.log(getCast)
-
-
-
+  
   return (
     <div className="row">
       <h2>{title}</h2>
