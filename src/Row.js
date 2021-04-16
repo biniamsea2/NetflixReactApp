@@ -10,6 +10,7 @@ function Row({ title, getUrl }) {
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
   const [getRuntime, setRuntime] = useState("");
+  const [getallTogether, setAllTogether] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
@@ -17,6 +18,12 @@ function Row({ title, getUrl }) {
   const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
   const movieInfo = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}`;
+
+
+  const allTogether = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
+  const newTrailer = `https://www.youtube.com/watch?v=${getallTogether?.videos.results[0].key}`;
+
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -29,15 +36,22 @@ function Row({ title, getUrl }) {
     // dependency: [getUrl]
   }, [getUrl]);
 
+//data.results.key for video
+
+
   useEffect(() => {
     async function fetchMovieData() {
-      const movieRequest = await axios.get(urltest);
-      setTrailertest(movieRequest?.data.results[0]);
-      return movieRequest;
+      const movieInfo = await axios.get(allTogether);
+      setAllTogether(movieInfo?.data);
+      return movieInfo;
     }
 
     fetchMovieData();
   });
+
+
+
+
 
   useEffect(() => {
     async function fetchMovieRuntime() {
@@ -88,16 +102,16 @@ function Row({ title, getUrl }) {
             },
           }}
         >
-          <ReactPlayer url={final} width="100%" height="75%" controls={true} />
+          <ReactPlayer url={newTrailer} width="100%" height="75%" controls={true} />
 
           <h1 className="modal_title">
-            {getMovie?.name || getMovie?.title || getMovie?.original_name}
+            {getallTogether?.name || getallTogether?.title || getallTogether?.original_name}
           </h1>
           <h1 className="modal_year_description">
-            {dateFormat(getMovie?.release_date, "yyyy")}
+            {dateFormat(getallTogether?.release_date, "yyyy")}
           </h1>
-          <h1 className="modal_year_description">{getMovie?.overview}</h1>
-          <h1>{getRuntime}</h1>
+          <h1>{getallTogether?.runtime}</h1>
+          <h1 className="modal_year_description">{getallTogether?.overview}</h1>
           {/* <h1>{movieCast}</h1> */}
 
           <div>
