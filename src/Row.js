@@ -10,6 +10,7 @@ function Row({ title, getUrl }) {
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
   const [getRuntime, setRuntime] = useState("");
+  const [getCast, setCast] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
  
   const base_url = "https://image.tmdb.org/t/p/original/";
@@ -17,13 +18,12 @@ function Row({ title, getUrl }) {
   const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
   const movieInfo = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}`;
-console.log(movieInfo)
+  const movieCast = `https://api.themoviedb.org/3/movie/${getMovie?.id}/credits?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
 
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(getUrl);
       setMovies(request.data.results);
-      console.log(getMovie.runtime)
       return request;
     }
 
@@ -35,7 +35,6 @@ console.log(movieInfo)
     async function fetchMovieData() {
       const movieRequest = await axios.get(urltest);
       setTrailertest(movieRequest?.data.results[0]);
-
       return movieRequest;
     }
 
@@ -46,19 +45,24 @@ console.log(movieInfo)
     async function fetchMovieRuntime() {
       const movieRunTime = await axios.get(movieInfo);
       setRuntime(movieRunTime?.data.runtime);
-
       return movieRunTime;
     }
-
+    
     fetchMovieRuntime();
   },);
-
-
-
-
-
-
-
+  
+  useEffect(() => {
+    async function fetchMovieCast() {
+      const movieCharcters = await axios.get(movieCast);
+      setCast(movieCharcters?.data.name || movieCharcters?.data.original_name);
+      
+      console.log(getCast)
+      return movieCharcters;
+    }
+    
+    fetchMovieCast();
+  },);
+  
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -103,10 +107,10 @@ console.log(movieInfo)
                 />
   
         <h1 className="modal_title">{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
-        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "mmmm dS, yyyy")}</h1>
+        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "yyyy")}</h1>
         <h1 className="modal_year_description">{getMovie?.overview}</h1>
         <h1>{getRuntime}</h1>
-        {/* <h1>{final}</h1> */}
+        <h1>{getCast}</h1>
 
           <div>
             <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
