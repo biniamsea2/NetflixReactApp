@@ -10,13 +10,7 @@ function HomeScreen() {
     <div className="homeScreen">
       <Nav />
       <Banner />
-
-      <Row
-        title="NETFLIX ORIGINALS"
-        getUrl={requests.getNetflixOriginals}
-      />
-
-      <Row title="Trending Now" getUrl={requests.getTrending}/>
+      <Row title="Popular on Netflix" getUrl={requests.getTrending}/>
       <Row title="Action Movies" getUrl={requests.getActionMovies} />
       <Row title="Comedy Movies" getUrl={requests.getComedyMovies} />
       <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />

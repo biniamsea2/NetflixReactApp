@@ -78,17 +78,15 @@ function Row({ title, getUrl }) {
               <ReactPlayer
                 url= {final}
                 width="100%"
-                height="100%"
+                height="75%"
                 controls={true}
                 />
   
-
-
-        <h1>{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
-        <h1>{dateFormat(getMovie?.release_date, "yyyy")}</h1>
-        <h1>{getMovie?.overview}</h1>
-        <h1>{getMovie?.id}</h1>
-        <h1>{final}</h1>
+        <h1 className="modal_title">{getMovie?.name || getMovie?.title || getMovie?.original_name}</h1>
+        <h1 className="modal_year_description">{dateFormat(getMovie?.release_date, "yyyy")}</h1>
+        <h1 className="modal_year_description">{getMovie?.overview}</h1>
+        {/* <h1>{getMovie?.id}</h1>
+        <h1>{final}</h1> */}
 
           <div>
             <button className="modal_button" onClick={()=> setModalIsOpen(false)}>Close</button>
