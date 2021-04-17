@@ -8,6 +8,9 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
+// progress bar with animation:
+// import ProgressBar from "react-animated-progress-bar";
+
 function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
@@ -15,9 +18,9 @@ function Row({ title, getUrl }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
-  // query to get all info regarding a specific movie
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
+  // query to get key of movie
   const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
   const percentage = `${getMovie?.vote_average * 10}`;
 
@@ -93,6 +96,8 @@ function Row({ title, getUrl }) {
           </h1>
           <h1>{getMovie?.runtime}</h1>
           <div style={{ width: 70 }}>
+            {/* <ProgressBar width="170" trackWidth="13" percentage={percentage} /> */}
+
             {percentage >= 0 && percentage <= 29 && (
               <CircularProgressbar
                 value={percentage}
