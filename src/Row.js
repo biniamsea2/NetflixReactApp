@@ -13,9 +13,6 @@ function Row({ title, getUrl }) {
   const [getMovie, setGetMovie] = useState("");
   const [getmovieTrialer, setMovieTrailer] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [getGreatRating, setGreatRating] = useState(false);
-  const [getOkRating, setOkRating] = useState(false);
-  const [getBadRating, setBadRating] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to get all info regarding a specific movie
@@ -43,15 +40,6 @@ function Row({ title, getUrl }) {
     fetchMovieTrailer();
   });
 
-  if (percentage >= 0 && percentage <= 29) {
-    setBadRating(true);
-  }
-  if (percentage >= 30 && percentage <= 59) {
-    setOkRating(true);
-  }
-  if (percentage >= 60 && percentage <= 100) {
-    setGreatRating(true);
-  }
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -105,31 +93,7 @@ function Row({ title, getUrl }) {
           </h1>
           <h1>{getMovie?.runtime}</h1>
           <div Style="width:5%;">
-            {getGreatRating && (
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: "green",
-                  trailColor: "gray",
-                  width: "5%",
-                })}
-              />
-            )}
-            {getOkRating && (
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: "yellow",
-                  trailColor: "gray",
-                  width: "5%",
-                })}
-              />
-            )}
-            {getBadRating && (
+            {percentage >= 0 && percentage <= 29 && (
               <CircularProgressbar
                 value={percentage}
                 text={`${percentage}%`}
@@ -137,7 +101,28 @@ function Row({ title, getUrl }) {
                   textColor: "white",
                   pathColor: "red",
                   trailColor: "gray",
-                  width: "5%",
+                })}
+              />
+            )}
+            {percentage >= 30 && percentage <= 59 && (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "yellow",
+                  trailColor: "gray",
+                })}
+              />
+            )}
+            {percentage >= 60 && percentage <= 100 && (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "green",
+                  trailColor: "gray",
                 })}
               />
             )}
