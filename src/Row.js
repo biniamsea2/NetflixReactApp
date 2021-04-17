@@ -8,7 +8,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-function Row({ title, getUrl, done }) {
+function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
   const [getmovieTrialer, setMovieTrailer] = useState("");
@@ -16,6 +16,7 @@ function Row({ title, getUrl, done }) {
   const [getGreatRating, setGreatRating] = useState(false);
   const [getOkRating, setOkRating] = useState(false);
   const [getBadRating, setBadRating] = useState(false);
+
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to get all info regarding a specific movie
   // query to movie trailer with key
@@ -41,6 +42,16 @@ function Row({ title, getUrl, done }) {
     }
     fetchMovieTrailer();
   });
+
+  if (percentage >= 0 && percentage <= 29) {
+    setBadRating(true);
+  }
+  if (percentage >= 30 && percentage <= 59) {
+    setOkRating(true);
+  }
+  if (percentage >= 60 && percentage <= 100) {
+    setGreatRating(true);
+  }
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -93,17 +104,43 @@ function Row({ title, getUrl, done }) {
             {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
           <h1>{getMovie?.runtime}</h1>
-          <div Style="width:5%; margin-top">
-            <CircularProgressbar
-              value={percentage}
-              text={`${percentage}%`}
-              styles={buildStyles({
-                textColor: "white",
-                pathColor: "green",
-                trailColor: "gray",
-                width: "5%",
-              })}
-            />
+          <div Style="width:5%;">
+            {getGreatRating && (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "green",
+                  trailColor: "gray",
+                  width: "5%",
+                })}
+              />
+            )}
+            {getOkRating && (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "yellow",
+                  trailColor: "gray",
+                  width: "5%",
+                })}
+              />
+            )}
+            {getBadRating && (
+              <CircularProgressbar
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  textColor: "white",
+                  pathColor: "red",
+                  trailColor: "gray",
+                  width: "5%",
+                })}
+              />
+            )}
           </div>
           <h1 className="modal_year_description">{getMovie?.overview}</h1>
 
