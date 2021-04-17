@@ -16,9 +16,6 @@ function Row({ title, getUrl }) {
   const urltest = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
   const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
 
-  const movieInfo = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}`;
-
-
   const allTogether = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
 
 
@@ -47,6 +44,17 @@ function Row({ title, getUrl }) {
     fetchMovieData();
   });
 
+
+  
+  useEffect(() => {
+    async function fetchMovieKeyTrailer() {
+      const movieTrailerKey = await axios.get(urltest);
+      setTrailertest(movieTrailerKey?.data.results[0]);
+      return movieTrailerKey;
+    }
+
+    fetchMovieKeyTrailer();
+  });
 
 
 
@@ -88,7 +96,7 @@ function Row({ title, getUrl }) {
             },
           }}
         >
-          <ReactPlayer url="https://www.youtube.com/watch?v=SUXWAEX2jlg" width="100%" height="75%" controls={true} />
+          <ReactPlayer url={final} width="100%" height="75%" controls={true} />
 
           <h1 className="modal_title">
             {getallTogether?.name || getallTogether?.title || getallTogether?.original_name}
@@ -98,12 +106,10 @@ function Row({ title, getUrl }) {
           </h1>
           <h1>{getallTogether?.runtime}</h1>
           <h1 className="modal_year_description">{getallTogether?.overview}</h1>
-          <h1>{getallTogether?.popularity}</h1>
-          <h1>{getallTogether?.budget}</h1>
-          <h1>{getallTogether?.original_language}</h1>
-          <h1>{allTogether}</h1>
+          {/* <h1>{getallTogether?.popularity}</h1> */}
+
           {/* <h1>{getallTogether?.videos.results[0]?.key}</h1> */}
-          {/* <h1>{getallTogether?.vote_average}</h1> */}
+          <h1>{getallTogether?.vote_average}</h1>
 
           <div>
             <button
