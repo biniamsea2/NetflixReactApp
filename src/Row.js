@@ -4,17 +4,24 @@ import axios from "./axios";
 import Modal from "react-modal";
 import dateFormat from "dateformat";
 import ReactPlayer from "react-player";
+import { CircularProgressbar } from "react-circular-progressbar";
+import { buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
-function Row({ title, getUrl }) {
+function Row({ title, getUrl, done }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
   const [getmovieTrialer, setMovieTrailer] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [getGreatRating, setGreatRating] = useState(false);
+  const [getOkRating, setOkRating] = useState(false);
+  const [getBadRating, setBadRating] = useState(false);
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to get all info regarding a specific movie
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
-  const movieTrailer = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  const percentage = `${getMovie?.vote_average * 10}`;
 
   useEffect(() => {
     async function fetchData() {
@@ -34,7 +41,6 @@ function Row({ title, getUrl }) {
     }
     fetchMovieTrailer();
   });
-
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -81,18 +87,25 @@ function Row({ title, getUrl }) {
           />
 
           <h1 className="modal_title">
-            {getMovie?.name ||
-              getMovie?.title ||
-              getMovie?.original_name}
+            {getMovie?.name || getMovie?.title || getMovie?.original_name}
           </h1>
           <h1 className="modal_year_description">
             {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
           <h1>{getMovie?.runtime}</h1>
-          <h1 className="modal_year_description">
-            {getMovie?.overview}
-          </h1>
-          <h1>{getMovie?.vote_average}</h1>
+          <div Style="width:5%; margin-top">
+            <CircularProgressbar
+              value={percentage}
+              text={`${percentage}%`}
+              styles={buildStyles({
+                textColor: "white",
+                pathColor: "green",
+                trailColor: "gray",
+                width: "5%",
+              })}
+            />
+          </div>
+          <h1 className="modal_year_description">{getMovie?.overview}</h1>
 
           <div>
             <button
