@@ -92,7 +92,7 @@ function Row({ title, getUrl }) {
             {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
           <h1>{getMovie?.runtime}</h1>
-          <div Style="width:5%;">
+          <div style={{ width: 70 }}>
             {percentage >= 0 && percentage <= 29 && (
               <CircularProgressbar
                 value={percentage}
