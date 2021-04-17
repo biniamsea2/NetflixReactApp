@@ -9,12 +9,13 @@ function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
+  const [getmovieTrialer, setMovieTRailer] = useState("");
   const [getallTogether, setAllTogether] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
   const urltest = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
-  const final = `https://www.youtube.com/watch?v=${getTrailer?.key}`;
+  const final = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
 
   const allTogether = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
 
@@ -43,6 +44,17 @@ function Row({ title, getUrl }) {
 
     fetchMovieData();
   });
+
+  useEffect(() => {
+    async function fetchMovieDataTrailer() {
+      const movieInfo2 = await axios.get(allTogether);
+      setMovieTRailer(movieInfo2?.data.videos.results[0]);
+      return movieInfo2;
+    }
+
+    fetchMovieDataTrailer();
+  });
+
 
 
   
