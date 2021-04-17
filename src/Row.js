@@ -9,7 +9,6 @@ function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
   const [getTrailer, setTrailertest] = useState("");
-  const [getRuntime, setRuntime] = useState("");
   const [getallTogether, setAllTogether] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -21,10 +20,11 @@ function Row({ title, getUrl }) {
 
 
   const allTogether = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
-  const newTrailer = `https://www.youtube.com/watch?v=${getallTogether?.videos.results[0].key}`;
+
+
+  // const newTrailer = `https://www.youtube.com/watch?v=${getallTogether?.videos.results.key}`;
 
   
-
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(getUrl);
@@ -35,8 +35,6 @@ function Row({ title, getUrl }) {
     fetchData();
     // dependency: [getUrl]
   }, [getUrl]);
-
-//data.results.key for video
 
 
   useEffect(() => {
@@ -50,18 +48,6 @@ function Row({ title, getUrl }) {
   });
 
 
-
-
-
-  useEffect(() => {
-    async function fetchMovieRuntime() {
-      const movieRunTime = await axios.get(movieInfo);
-      setRuntime(movieRunTime?.data.runtime);
-      return movieRunTime;
-    }
-
-    fetchMovieRuntime();
-  });
 
 
   return (
@@ -102,7 +88,7 @@ function Row({ title, getUrl }) {
             },
           }}
         >
-          <ReactPlayer url={newTrailer} width="100%" height="75%" controls={true} />
+          <ReactPlayer url="https://www.youtube.com/watch?v=SUXWAEX2jlg" width="100%" height="75%" controls={true} />
 
           <h1 className="modal_title">
             {getallTogether?.name || getallTogether?.title || getallTogether?.original_name}
@@ -112,7 +98,12 @@ function Row({ title, getUrl }) {
           </h1>
           <h1>{getallTogether?.runtime}</h1>
           <h1 className="modal_year_description">{getallTogether?.overview}</h1>
-          {/* <h1>{movieCast}</h1> */}
+          <h1>{getallTogether?.popularity}</h1>
+          <h1>{getallTogether?.budget}</h1>
+          <h1>{getallTogether?.original_language}</h1>
+          <h1>{allTogether}</h1>
+          {/* <h1>{getallTogether?.videos.results[0]?.key}</h1> */}
+          {/* <h1>{getallTogether?.vote_average}</h1> */}
 
           <div>
             <button
