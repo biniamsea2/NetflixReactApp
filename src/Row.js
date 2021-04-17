@@ -8,14 +8,13 @@ import ReactPlayer from "react-player";
 function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
-  const [getAllMovieInfo, setAllMovieInfo] = useState("");
   const [getmovieTrialer, setMovieTrailer] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to get all info regarding a specific movie
-  const allMovieInfo = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
+  const movieTrailer = `http://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
 
   useEffect(() => {
     async function fetchData() {
@@ -28,19 +27,10 @@ function Row({ title, getUrl }) {
   }, [getUrl]);
 
   useEffect(() => {
-    async function fetchAllMovieInfo() {
-      const movieInfo = await axios.get(allMovieInfo);
-      setAllMovieInfo(movieInfo?.data);
-      return movieInfo;
-    }
-    fetchAllMovieInfo();
-  });
-
-  useEffect(() => {
     async function fetchMovieTrailer() {
-      const movieInfo2 = await axios.get(allMovieInfo);
-      setMovieTrailer(movieInfo2?.data.videos.results[0]);
-      return movieInfo2;
+      const movieInfo = await axios.get(movieTrailer);
+      setMovieTrailer(movieInfo?.data.results[0]);
+      return movieInfo;
     }
     fetchMovieTrailer();
   });
@@ -91,18 +81,18 @@ function Row({ title, getUrl }) {
           />
 
           <h1 className="modal_title">
-            {getAllMovieInfo?.name ||
-              getAllMovieInfo?.title ||
-              getAllMovieInfo?.original_name}
+            {getMovie?.name ||
+              getMovie?.title ||
+              getMovie?.original_name}
           </h1>
           <h1 className="modal_year_description">
-            {dateFormat(getAllMovieInfo?.release_date, "yyyy")}
+            {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
-          <h1>{getAllMovieInfo?.runtime}</h1>
+          <h1>{getMovie?.runtime}</h1>
           <h1 className="modal_year_description">
-            {getAllMovieInfo?.overview}
+            {getMovie?.overview}
           </h1>
-          <h1>{getAllMovieInfo?.vote_average}</h1>
+          <h1>{getMovie?.vote_average}</h1>
 
           <div>
             <button
