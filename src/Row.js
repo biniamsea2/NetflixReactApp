@@ -15,18 +15,22 @@ function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
   const [getmovieTrialer, setMovieTrailer] = useState("");
+  const [getRunTime, setRunTime] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
   // query to get key of movie
-  const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  // const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
+  const movieTrailer = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
+
   const percentage = `${getMovie?.vote_average * 10}`;
 
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(getUrl);
+      console.log(request.data.results);
       setMovies(request.data.results);
       return request;
     }
@@ -37,7 +41,8 @@ function Row({ title, getUrl }) {
   useEffect(() => {
     async function fetchMovieTrailer() {
       const movieInfo = await axios.get(movieTrailer);
-      setMovieTrailer(movieInfo?.data.results[0]);
+      setMovieTrailer(movieInfo?.data.videos.results[0]);
+      setRunTime(movieInfo?.data.runtime);
       return movieInfo;
     }
     fetchMovieTrailer();
@@ -94,7 +99,6 @@ function Row({ title, getUrl }) {
           <h1 className="modal_year_description">
             {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
-          <h1>{getMovie?.runtime}</h1>
           <div style={{ width: 70 }}>
             {/* <ProgressBar width="170" trackWidth="13" percentage={percentage} /> */}
 
@@ -133,6 +137,7 @@ function Row({ title, getUrl }) {
             )}
           </div>
           <h1 className="modal_year_description">{getMovie?.overview}</h1>
+          <h1>{getRunTime}</h1>
 
           <div>
             <button
