@@ -13,21 +13,19 @@ function HomeScreen() {
       <Row title="Popular on Netflix" getUrl={requests.getTrending}/>
       <Row title="Action Movies" getUrl={requests.getActionMovies} />
       <Row title="Comedy Movies" getUrl={requests.getComedyMovies} />
-      <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />
-      {/* <Row title="TV Family" getUrl={requests.getTvFamily} /> */}
-      <Row title="Documentaries" getUrl={requests.getDocumentaries} />
-      <Row title="Crime Movies" getUrl={requests.getCrimeMovies} />
+      <Row title="Adventure Movies" getUrl={requests.getAdventureMovies} />
       <Row title="Family Movies" getUrl={requests.getFamilyMovies} />
-      {/* <Row title="Reality TV" getUrl={requests.getRealStories} /> */}
-      {/* <Row title="Tv Comedies" getUrl={requests.getTvComedies} /> */}
-      {/* <Row title="Sci-Fi" getUrl={requests.getSciFi} /> */}
-      {/* <Row title="Soapy TV Shows" getUrl={requests.getTvSoap} /> */}
-      {/* <Row title="TV War & Politics" getUrl={requests.getWar} /> */}
+      <Row title="Horror Movies" getUrl={requests.getHorrorMovies} />
+      <Row title="Documentaries" getUrl={requests.getDocumentaries} />
       <Row title="Thriller Movies" getUrl={requests.getThrillerMovies} />
+      <Row title="Crime Movies" getUrl={requests.getCrimeMovies} />
       <Row title="Romance Movies" getUrl={requests.getRomanceMovies} />
+      <Row title="Animation Movies" getUrl={requests.getAnimationMovies} />
+      <Row title="History Movies" getUrl={requests.getHistoryMovies} />
       <Row title="Drama Movies" getUrl={requests.getDramaMovies} />
-      {/* <Row title="TV Talk" getUrl={requests.getTalkTv} /> */}
-      {/* <Row title="TV Drama" getUrl={requests.getDramaTv} /> */}
+      <Row title="Fantasy Movies" getUrl={requests.getFantasyMovies} />
+      <Row title="Sci-Fi Movies" getUrl={requests.getSciFiMovies} />
+      {/* <Row title="Tv Comedies" getUrl={requests.getTvComedies} /> */}
     </div>
   );
 }

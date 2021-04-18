@@ -8,9 +8,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
 import { TransverseLoading } from "react-loadingg";
 
-// progress bar with animation:
-// import ProgressBar from "react-animated-progress-bar";
-
 function Row({ title, getUrl }) {
   const [movies, setMovies] = useState([]);
   const [getMovie, setGetMovie] = useState("");
@@ -24,7 +21,6 @@ function Row({ title, getUrl }) {
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
   // query to get key of movie
   const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
-
   const percentage = `${getMovie?.vote_average * 10}`;
 
   useEffect(() => {

@@ -9,30 +9,15 @@ const requests = {
   getTopRated: `/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
   getRomanceMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10749`,
   getTvFamily: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10751`,
-  getSciFi: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10765`,
-  getWar: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10768`,
   getFamilyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10751`,
   getComedyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=35`,
   getThrillerMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=53`,
-  getDramaTv: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=18`,
-  getRealStories: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=10764&include_null_first_air_dates=false`,
-  getTvSoap: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10766`,
   getDramaMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=18`,
-  getTalkTv: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10767`,
-
-
-
-
   getAdventureMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=12`,
   getAnimationMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=16`,
   getFantasyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=14`,
   getHistoryMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=36`,
   getSciFiMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=878`,
-  getTVMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10770`,
-
-
-
-
 };
 
 export default requests;
