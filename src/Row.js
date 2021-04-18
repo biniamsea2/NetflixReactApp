@@ -95,7 +95,10 @@ function Row({ title, getUrl }) {
               controls={true}
             />
           ) : (
-            <TransverseLoading color={"#e61e17"} margin-top={'10px'} />
+            // put loading indicator in a div to be able to position it to the top
+            <div className="container_loader">
+              <TransverseLoading color={"#e61e17"} />
+            </div>
           )}
 
           <h1 className="modal_title">
