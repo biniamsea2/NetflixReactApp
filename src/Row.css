@@ -68,5 +68,7 @@
     clear: left;
     height: auto;
 }
-
+.movie_runtime{
+    font-weight: lighter;
+}
 

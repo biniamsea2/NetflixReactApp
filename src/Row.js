@@ -49,6 +49,11 @@ function Row({ title, getUrl }) {
     fetchMovieTrailer();
   });
 
+  // convert movie runtime to hours and minutes
+  const hours = Math.floor(getRunTime / 60);
+  const minutes = getRunTime % 60;
+  const finalMovieTime = `${hours}h ${minutes}m`;
+
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -107,6 +112,8 @@ function Row({ title, getUrl }) {
           <h1 className="modal_year_description">
             {dateFormat(getMovie?.release_date, "yyyy")}
           </h1>
+          <h1 className="movie_runtime">{finalMovieTime}</h1>
+
           <div style={{ width: 70 }}>
             {/* <ProgressBar width="170" trackWidth="13" percentage={percentage} /> */}
 
@@ -145,7 +152,6 @@ function Row({ title, getUrl }) {
             )}
           </div>
           <h1 className="modal_year_description">{getMovie?.overview}</h1>
-          <h1>{getRunTime}</h1>
 
           <div>
             <button
