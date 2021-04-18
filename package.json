@@ -28,7 +28,8 @@
     "react-score-indicator": "^2.2.1",
     "react-scripts": "4.0.3",
     "react-youtube": "^7.13.1",
-    "reactjs-popup": "^2.0.4"
+    "reactjs-popup": "^2.0.4",
+    "reactstrap": "^8.9.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,11 @@
 const requests = {
   getTrending: `/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
   getNetflixOriginals: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_networks=213`,
+
+  
   getTvComedies: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=35`,
+
+
   getCrimeMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=80`,
   getDocumentaries: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=99`,
   getActionMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=28`,
