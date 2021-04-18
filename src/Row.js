@@ -7,6 +7,8 @@ import ReactPlayer from "react-player";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 // progress bar with animation:
 // import ProgressBar from "react-animated-progress-bar";
@@ -30,7 +32,6 @@ function Row({ title, getUrl }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(getUrl);
-      console.log(request.data.results);
       setMovies(request.data.results);
       return request;
     }
@@ -86,6 +87,8 @@ function Row({ title, getUrl }) {
             },
           }}
         >
+                <CircularProgress color="secondary" />
+
           <ReactPlayer
             url={trailerLink}
             width="100%"
