@@ -1,11 +1,7 @@
 const requests = {
   getTrending: `/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
   getNetflixOriginals: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_networks=213`,
-
-  
   getTvComedies: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=35`,
-
-
   getCrimeMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=80`,
   getDocumentaries: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=99`,
   getActionMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=28`,
@@ -23,6 +19,20 @@ const requests = {
   getTvSoap: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10766`,
   getDramaMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=18`,
   getTalkTv: `/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10767`,
+
+
+
+
+  getAdventureMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=12`,
+  getAnimationMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=16`,
+  getFantasyMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=14`,
+  getHistoryMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=36`,
+  getSciFiMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=878`,
+  getTVMovies: `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=10770`,
+
+
+
+
 };
 
 export default requests;
