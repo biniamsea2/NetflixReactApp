@@ -101,60 +101,63 @@ function Row({ title, getUrl }) {
               <TransverseLoading color={"#e61e17"} />
             </div>
           )}
+          <div className="container">
+            <h1 className="modal_title">
+              {getMovie?.name || getMovie?.title || getMovie?.original_name}
+            </h1>
+            <h1 className="movie_runtime">{finalMovieTime}</h1>
 
-          <h1 className="modal_title">
-            {getMovie?.name || getMovie?.title || getMovie?.original_name}
-          </h1>
-          <h1 className="modal_year">
-            {dateFormat(getMovie?.release_date, "yyyy")}
-          </h1>
-          <h1 className="movie_runtime">{finalMovieTime}</h1>
+            <h1 className="modal_year">
+              {dateFormat(getMovie?.release_date, "yyyy")}
+            </h1>
+            <div className="break"></div>
 
-          <div style={{ width: 70 }}>
-            {/* <ProgressBar width="170" trackWidth="13" percentage={percentage} /> */}
+            <div style={{ width: 70, marginTop: 10 }}>
+              {/* <ProgressBar width="170" trackWidth="13" percentage={percentage} /> */}
 
-            {percentage >= 0 && percentage <= 29 && (
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: "red",
-                  trailColor: "gray",
-                })}
-              />
-            )}
-            {percentage >= 30 && percentage <= 59 && (
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: "yellow",
-                  trailColor: "gray",
-                })}
-              />
-            )}
-            {percentage >= 60 && percentage <= 100 && (
-              <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: "green",
-                  trailColor: "gray",
-                })}
-              />
-            )}
-          </div>
-          <h1 className="modal_description">{getMovie?.overview}</h1>
-          <div>
-            <button
-              className="modal_button"
-              onClick={() => setModalIsOpen(false)}
-            >
-              Close
-            </button>
+              {percentage >= 0 && percentage <= 30 && (
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "red",
+                    trailColor: "gray",
+                  })}
+                />
+              )}
+              {percentage >= 31 && percentage <= 60 && (
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "yellow",
+                    trailColor: "gray",
+                  })}
+                />
+              )}
+              {percentage >= 61 && percentage <= 100 && (
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                  styles={buildStyles({
+                    textColor: "white",
+                    pathColor: "green",
+                    trailColor: "gray",
+                  })}
+                />
+              )}
+            </div>
+            <h1 className="modal_description">{getMovie?.overview}</h1>
+            <div>
+              <button
+                className="modal_button"
+                onClick={() => setModalIsOpen(false)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </Modal>
       </div>
