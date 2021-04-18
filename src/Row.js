@@ -23,7 +23,6 @@ function Row({ title, getUrl }) {
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
   // query to get key of movie
-  // const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
   const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
 
   const percentage = `${getMovie?.vote_average * 10}`;
@@ -92,6 +91,7 @@ function Row({ title, getUrl }) {
             },
           }}
         >
+          {/* check if loading is true or not and display the transverseLoading component while waiting */}
           {loading ? (
             <ReactPlayer
               url={trailerLink}
@@ -152,7 +152,6 @@ function Row({ title, getUrl }) {
             )}
           </div>
           <h1 className="modal_year_description">{getMovie?.overview}</h1>
-
           <div>
             <button
               className="modal_button"
