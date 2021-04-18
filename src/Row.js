@@ -6,9 +6,7 @@ import dateFormat from "dateformat";
 import ReactPlayer from "react-player";
 import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { TransverseLoading } from "react-loadingg";
 
 // progress bar with animation:
 // import ProgressBar from "react-animated-progress-bar";
@@ -19,13 +17,14 @@ function Row({ title, getUrl }) {
   const [getmovieTrialer, setMovieTrailer] = useState("");
   const [getRunTime, setRunTime] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const base_url = "https://image.tmdb.org/t/p/original/";
   // query to movie trailer with key
   const trailerLink = `https://www.youtube.com/watch?v=${getmovieTrialer?.key}`;
   // query to get key of movie
   // const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}/videos?api_key=${process.env.REACT_APP_API_KEY}`;
-  const movieTrailer = `http://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
+  const movieTrailer = `https://api.themoviedb.org/3/movie/${getMovie?.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=videos`;
 
   const percentage = `${getMovie?.vote_average * 10}`;
 
@@ -44,6 +43,7 @@ function Row({ title, getUrl }) {
       const movieInfo = await axios.get(movieTrailer);
       setMovieTrailer(movieInfo?.data.videos.results[0]);
       setRunTime(movieInfo?.data.runtime);
+      setLoading(true);
       return movieInfo;
     }
     fetchMovieTrailer();
@@ -87,14 +87,16 @@ function Row({ title, getUrl }) {
             },
           }}
         >
-                <CircularProgress color="secondary" />
-
-          <ReactPlayer
-            url={trailerLink}
-            width="100%"
-            height="75%"
-            controls={true}
-          />
+          {loading ? (
+            <ReactPlayer
+              url={trailerLink}
+              width="100%"
+              height="75%"
+              controls={true}
+            />
+          ) : (
+            <TransverseLoading color={"#e61e17"} margin-top={'10px'} />
+          )}
 
           <h1 className="modal_title">
             {getMovie?.name || getMovie?.title || getMovie?.original_name}
