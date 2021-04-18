@@ -55,7 +55,13 @@
     font-weight: bold;
 }
 
-.modal_year_description{
+.modal_year{
+    color:lightgray;
+    font-weight: lighter;
+
+}
+
+.modal_description{
     color:lightgray;
     font-weight: lighter;
 
