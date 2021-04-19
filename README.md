@@ -17,6 +17,7 @@ Thanks to this application I was able to expand on a ton of React.js concepts an
 - Follow industry standards for styling.
 - Create Stripe account to be able to include payment processing.
 - Add Stripe extension through Firebase to connect Stripe account to Firebase account.
+- Become familiar with and incorporate dateFormat, Modal, CircularProgressbar, react-loadingg, 
 
 ## Available Scripts
 
