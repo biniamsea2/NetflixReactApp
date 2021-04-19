@@ -3,6 +3,7 @@ import "./Banner.css";
 import axios from "./axios";
 import requests from "./Requests";
 
+
 function Banner() {
   const [movie, setMovie] = useState([]);
 
@@ -42,6 +43,7 @@ function Banner() {
         </h1>
         <div className="banner_buttons">
           <button className="banner_button">Play</button>
+
           <button className="banner_button">My List</button>
         </div>
         {/* movie description comes back as "overview" */}

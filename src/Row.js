@@ -105,11 +105,10 @@ function Row({ title, getUrl }) {
             <h1 className="modal_title">
               {getMovie?.name || getMovie?.title || getMovie?.original_name}
             </h1>
-            <h1 className="movie_runtime">{finalMovieTime}</h1>
-
             <h1 className="modal_year">
               {dateFormat(getMovie?.release_date, "yyyy")}
             </h1>
+            <h1 className="movie_runtime">{finalMovieTime}</h1>
             <div className="break"></div>
 
             <div style={{ width: 70, marginTop: 10 }}>
