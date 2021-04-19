@@ -60,7 +60,6 @@
 .modal_title{
     color:white;
     font-weight: bold;
-    
 }
 
 .modal_year{
@@ -68,6 +67,10 @@
     font-weight: lighter;
     margin-left: 20px;
 
+}
+.movie_runtime{
+    font-weight: lighter;
+    margin-left: 20px;
 }
 
 .modal_description{
@@ -83,11 +86,7 @@
     clear: left;
     height: auto;
 }
-.movie_runtime{
-    font-weight: lighter;
-    margin-left: 20px;
 
-}
 
 .break {
     flex-basis: 100%;
