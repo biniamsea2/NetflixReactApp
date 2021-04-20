@@ -148,7 +148,9 @@ function Row({ title, getUrl }) {
                 />
               )}
             </div>
+            <div className="break"></div>
             <h1 className="modal_description">{getMovie?.overview}</h1>
+            <div className="break"></div>
             <div>
               <button
                 className="modal_button"
